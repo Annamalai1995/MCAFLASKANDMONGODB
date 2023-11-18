@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+</head>
+<body>
+    <table border="5px" cellspacing="20px" cellpadding="20px">
+        <thead>
+            <tr>
+                <th>Front end</th><th>Back end</th><th>Database</th><th>Server</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for row in stack%}
+                <tr>
+                    <td>{{row.front}}</td><td>{{row.back}}</td><td>{{row.data}}</td><td>{{row.server}}</td>
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    
+</body>
+</html>

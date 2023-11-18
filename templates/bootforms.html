@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooTforms</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <p class="text-danger display-5">{{msg}}</p>
+    <div class="container">
+        <div class="row justify-content-center">
+            <form action="/send" method="post" class="col-12 col-lg-5 col-md-8 col-sm-12 p-5 rounded-5 shadow-lg">
+                <div class="row justify-content-between">
+                    <div class="col-6">
+                        <label>First name</label>
+                        <input type="text" name="fname" placeholder="First Name" class="form-control"/>
+                    </div>
+                    <div class="col-6">
+                        <label>Last name</label>
+                        <input type="text" name="lname" placeholder="Last Name" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form group">
+                    <label>Email Id</label>
+                    <input type="email" name="mail" placeholder="Email please" class="form-control" />
+                </div>
+                <div class="form group">
+                    <label>Mobile Number</label>
+                    <input type="tel" name="mobile" placeholder="Contact please" class="form-control" />
+                </div>
+                <div class="row justify-content-evenly">
+                    <button type="submit" class="col-3 btn btn-outline-primary rounded-pill">SignUP</button>
+                    <button type="reset" class="col-3 btn btn-outline-danger rounded-pill">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+    
+</body>
+</html>

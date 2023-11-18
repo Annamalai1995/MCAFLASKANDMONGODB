@@ -1,0 +1,802 @@
+Atlas atlas-hp69qc-shard-0 [primary] forenoon>show dbs
+forenoon   40.00 KiB
+admin     336.00 KiB
+local       1.27 GiB
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon>use forenoon
+switched to db forenoon
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> show collections
+first
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.first.find()
+[
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.first.find().pretty()
+[
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.first.insert({"expertName":'Manoj Kumar',"technology":'Java',"experience":1,skills:{"frontend":'material ui',"backend":"spring boot"},"location":"namakkal"})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("631039a21b1281b079eba296") }
+}
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.first.find().pretty()
+[
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("631039a21b1281b079eba296"),
+    expertName: 'Manoj Kumar',
+    technology: 'Java',
+    experience: 1,
+    skills: { frontend: 'material ui', backend: 'spring boot' },
+    location: 'namakkal'
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.first.insertOne({"expertName":'sathish',"technology":'Python',"experience":3,skills:{"frontend":'react',"backend":"django"},"location":"sivathapuram"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63103c121b1281b079eba297")
+}
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon>db.first.insertMany([{"expertName":"Karthick","technology":"Java","experience":10,"skills":{"frontend":"react","backend":['spring','django','flask','express']},"location":"salem"},{"expertName":"Sam","technology":"devloper","experience":9,"skills":"Agile","location":"chennai"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("63103df01b1281b079eba298"),
+    '1': ObjectId("63103df01b1281b079eba299")
+  }
+}
+
+insertOne({"key":"value","key":{"key":value,"key:"value"},"key":value})
+
+insertMany([{json},{json},{json}])
+
+bulkWrite([{insertOne:{json}},{insertOne:{json}}])
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.bulkWrite([{insertOne:{"expertName":'kumar',"technology":"python","experienece":8,"skills":['django','express'],"location":'bangalore'}},{insertOne:{"expertName":'Gowthami',"technology":"data structures","experienece":5,"skills":['java','python'],"location":'chennai'}}])
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find({"location":"salem"})
+[
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba298"),
+    expertName: 'Razak Mohamed',
+    technology: 'Java',
+    experience: 10,
+    skills: {
+      frontend: 'react',
+      backend: [ 'spring', 'django', 'flask', 'express' ]
+    },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba299"),
+    expertName: 'Rasheedha',
+    technology: 'digital marketting',
+    experience: 9,
+    skills: 'SEO',
+    location: 'salem'
+  }
+]
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find({"experience":{$gte:4}})
+[
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba298"),
+    expertName: 'Razak Mohamed',
+    technology: 'Java',
+    experience: 10,
+    skills: {
+      frontend: 'react',
+      backend: [ 'spring', 'django', 'flask', 'express' ]
+    },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba299"),
+    expertName: 'Rasheedha',
+    technology: 'digital marketting',
+    experience: 9,
+    skills: 'SEO',
+    location: 'salem'
+  }
+]
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find({$and:[{"experience":{$gte:2}},{"experience":{$lte:9}}]}).pretty()
+[
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103c121b1281b079eba297"),
+    expertName: 'Aarthi',
+    technology: 'Python',
+    experience: 3,
+    skills: { frontend: 'react', backend: 'django' },
+    location: 'sivathapuram'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba299"),
+    expertName: 'Rasheedha',
+    technology: 'digital marketting',
+    experience: 9,
+    skills: 'SEO',
+    location: 'salem'
+  }
+]
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.first.find({$or:[{"technology":"java"},{"experience":{$gte:5}},{"location":"chennai"}]})
+
+[
+  {
+    _id: ObjectId("63103df01b1281b079eba298"),
+    expertName: 'Razak Mohamed',
+    technology: 'Java',
+    experience: 10,
+    skills: {
+      frontend: 'react',
+      backend: [ 'spring', 'django', 'flask', 'express' ]
+    },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba299"),
+    expertName: 'Rasheedha',
+    technology: 'digital marketting',
+    experience: 9,
+    skills: 'SEO',
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("6310420c1b1281b079eba29b"),
+    expertName: 'Karthiya banu',
+    technology: 'data structures',
+    experienece: 20,
+    skills: [ 'java', 'python' ],
+    location: 'chennai'
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find({"location":{$in:["salem","namakkal"]}})
+[
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("631039a21b1281b079eba296"),
+    expertName: 'Manoj Kumar',
+    technology: 'Java',
+    experience: 1,
+    skills: { frontend: 'material ui', backend: 'spring boot' },
+    location: 'namakkal'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba298"),
+    expertName: 'Razak Mohamed',
+    technology: 'Java',
+    experience: 10,
+    skills: {
+      frontend: 'react',
+      backend: [ 'spring', 'django', 'flask', 'express' ]
+    },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba299"),
+    expertName: 'Rasheedha',
+    technology: 'digital marketting',
+    experience: 9,
+    skills: 'SEO',
+    location: 'salem'
+  }
+]
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find({"location":{$nin:["salem","namakkal"]}})
+[
+  {
+    _id: ObjectId("63103c121b1281b079eba297"),
+    expertName: 'Aarthi',
+    technology: 'Python',
+    experience: 3,
+    skills: { frontend: 'react', backend: 'django' },
+    location: 'sivathapuram'
+  },
+  {
+    _id: ObjectId("6310420c1b1281b079eba29a"),
+    expertName: 'Maheshwaran',
+    technology: 'python',
+    experienece: 18,
+    skills: [ 'django', 'express' ],
+    location: 'trichy'
+  },
+  {
+    _id: ObjectId("6310420c1b1281b079eba29b"),
+    expertName: 'Karthiya banu',
+    technology: 'data structures',
+    experienece: 20,
+    skills: [ 'java', 'python' ],
+    location: 'chennai'
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find({"expertName":/A.*/})
+[
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103c121b1281b079eba297"),
+    expertName: 'Aarthi',
+    technology: 'Python',
+    experience: 3,
+    skills: { frontend: 'react', backend: 'django' },
+    location: 'sivathapuram'
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find({ "location": /.*m.*/ })
+[
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("631039a21b1281b079eba296"),
+    expertName: 'Manoj Kumar',
+    technology: 'Java',
+    experience: 1,
+    skills: { frontend: 'material ui', backend: 'spring boot' },
+    location: 'namakkal'
+  },
+  {
+    _id: ObjectId("63103c121b1281b079eba297"),
+    expertName: 'Aarthi',
+    technology: 'Python',
+    experience: 3,
+    skills: { frontend: 'react', backend: 'django' },
+    location: 'sivathapuram'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba298"),
+    expertName: 'Razak Mohamed',
+    technology: 'Java',
+    experience: 10,
+    skills: {
+      frontend: 'react',
+      backend: [ 'spring', 'django', 'flask', 'express' ]
+    },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba299"),
+    expertName: 'Rasheedha',
+    technology: 'digital marketting',
+    experience: 9,
+    skills: 'SEO',
+    location: 'salem'
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find({"expertName":/A.*/}).count()
+2
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find().sort({"expertName":0})
+MongoInvalidArgumentError: Invalid sort direction: 0
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find().sort({"expertName":1})
+[
+  {
+    _id: ObjectId("63103c121b1281b079eba297"),
+    expertName: 'Aarthi',
+    technology: 'Python',
+    experience: 3,
+    skills: { frontend: 'react', backend: 'django' },
+    location: 'sivathapuram'
+  },
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("6310420c1b1281b079eba29b"),
+    expertName: 'Karthiya banu',
+    technology: 'data structures',
+    experienece: 20,
+    skills: [ 'java', 'python' ],
+    location: 'chennai'
+  },
+  {
+    _id: ObjectId("6310420c1b1281b079eba29a"),
+    expertName: 'Maheshwaran',
+    technology: 'python',
+    experienece: 18,
+    skills: [ 'django', 'express' ],
+    location: 'trichy'
+  },
+  {
+    _id: ObjectId("631039a21b1281b079eba296"),
+    expertName: 'Manoj Kumar',
+    technology: 'Java',
+    experience: 1,
+    skills: { frontend: 'material ui', backend: 'spring boot' },
+    location: 'namakkal'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba299"),
+    expertName: 'Rasheedha',
+    technology: 'digital marketting',
+    experience: 9,
+    skills: 'SEO',
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba298"),
+    expertName: 'Razak Mohamed',
+    technology: 'Java',
+    experience: 10,
+    skills: {
+      frontend: 'react',
+      backend: [ 'spring', 'django', 'flask', 'express' ]
+    },
+    location: 'salem'
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find().sort({"expertName":-1})
+[
+  {
+    _id: ObjectId("63103df01b1281b079eba298"),
+    expertName: 'Razak Mohamed',
+    technology: 'Java',
+    experience: 10,
+    skills: {
+      frontend: 'react',
+      backend: [ 'spring', 'django', 'flask', 'express' ]
+    },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba299"),
+    expertName: 'Rasheedha',
+    technology: 'digital marketting',
+    experience: 9,
+    skills: 'SEO',
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("631039a21b1281b079eba296"),
+    expertName: 'Manoj Kumar',
+    technology: 'Java',
+    experience: 1,
+    skills: { frontend: 'material ui', backend: 'spring boot' },
+    location: 'namakkal'
+  },
+  {
+    _id: ObjectId("6310420c1b1281b079eba29a"),
+    expertName: 'Maheshwaran',
+    technology: 'python',
+    experienece: 18,
+    skills: [ 'django', 'express' ],
+    location: 'trichy'
+  },
+  {
+    _id: ObjectId("6310420c1b1281b079eba29b"),
+    expertName: 'Karthiya banu',
+    technology: 'data structures',
+    experienece: 20,
+    skills: [ 'java', 'python' ],
+    location: 'chennai'
+  },
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103c121b1281b079eba297"),
+    expertName: 'Aarthi',
+    technology: 'Python',
+    experience: 3,
+    skills: { frontend: 'react', backend: 'django' },
+    location: 'sivathapuram'
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.find().sort({"experience":-1})
+[
+  {
+    _id: ObjectId("63103df01b1281b079eba298"),
+    expertName: 'Razak Mohamed',
+    technology: 'Java',
+    experience: 10,
+    skills: {
+      frontend: 'react',
+      backend: [ 'spring', 'django', 'flask', 'express' ]
+    },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba299"),
+    expertName: 'Rasheedha',
+    technology: 'digital marketting',
+    experience: 9,
+    skills: 'SEO',
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103c121b1281b079eba297"),
+    expertName: 'Aarthi',
+    technology: 'Python',
+    experience: 3,
+    skills: { frontend: 'react', backend: 'django' },
+    location: 'sivathapuram'
+  },
+  {
+    _id: ObjectId("631039a21b1281b079eba296"),
+    expertName: 'Manoj Kumar',
+    technology: 'Java',
+    experience: 1,
+    skills: { frontend: 'material ui', backend: 'spring boot' },
+    location: 'namakkal'
+  },
+
+
+delete one item
+db.first.deleteOne()
+db.first.remove()
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.office.deleteMany({"location":{$nin:['salem']}})
+{ acknowledged: true, deletedCount: 3 }
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.first.find()
+[
+  {
+    _id: ObjectId("630d9649ae8064866f0c477b"),
+    expertName: 'Annamalai',
+    technology: 'Java',
+    experience: 4,
+    skills: { frontend: 'react', backend: 'spring' },
+    location: 'salem'
+  },
+  {
+    _id: ObjectId("63103df01b1281b079eba299"),
+    expertName: 'Rasheedha',
+    technology: 'digital marketting',
+    experience: 9,
+    skills: 'SEO',
+    location: 'salem'
+  }
+]
+
+new database:
+use new-database-name
+
+new collection:
+db.collection-name.insertOne({})
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.insertOne({"brand":"realme","features":['dolby vision','dolby aAtlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.insertOne({"brand":"realme","features":['dolby vision','dolby atmos'],"model":"7s","price":12500,"ram":8,"internal":64})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6316d9923649220b83768d27")
+}
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.find()
+[
+  {
+    _id: ObjectId("6316d9923649220b83768d27"),
+    brand: 'realme',
+    features: [ 'dolby vision', 'dolby atmos' ],
+    model: '7s',
+    price: 12500,
+    ram: 8,
+    internal: 64
+  }
+]
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.insertMany([{"brand":"vivo","features":['fhd','gorilla','dolby vision'],"model":'v20',"ram":4,"internal":64,"price":8700},{"brand":"oppo","model":'8s',"price":15000,"features":['gaming','pop up camera'],"ram":6,"internal":128},{"brand":"poco","model":'c3',"price":8000,"features":['gaming0','dolby atmos'],"internal":64,"ram":6},{"brand":"iqoo","model":'z3',"price":19800,"features":['5g','gaming'],"internal":128,"ram":8}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6316db933649220b83768d28"),
+    '1': ObjectId("6316db933649220b83768d29"),
+    '2': ObjectId("6316db933649220b83768d2a"),
+    '3': ObjectId("6316db933649220b83768d2b")
+  }
+}
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.find()
+[
+  {
+    _id: ObjectId("6316d9923649220b83768d27"),
+    brand: 'realme',
+    features: [ 'dolby vision', 'dolby atmos' ],
+    model: '7s',
+    price: 12500,
+    ram: 8,
+    internal: 64
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d28"),
+    brand: 'vivo',
+    features: [ 'fhd', 'gorilla', 'dolby vision' ],
+    model: 'v20',
+    ram: 4,
+    internal: 64,
+    price: 8700
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d29"),
+    brand: 'oppo',
+    model: '8s',
+    price: 15000,
+    features: [ 'gaming', 'pop up camera' ],
+    ram: 6,
+    internal: 128
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d2a"),
+    brand: 'poco',
+    model: 'c3',
+    price: 8000,
+    features: [ 'gaming', 'dolby atmos' ],
+    internal: 64,
+    ram: 6
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d2b"),
+    brand: 'iqoo',
+    model: 'z3',
+    price: 19800,
+    features: [ '5g', 'gaming' ],
+    internal: 128,
+    ram: 8
+  }
+]
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.update({"model":"8s"},{$set:{"ram":8}})
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.find()
+[
+  {
+    _id: ObjectId("6316d9923649220b83768d27"),
+    brand: 'realme',
+    features: [ 'dolby vision', 'dolby atmos' ],
+    model: '7s',
+    price: 12500,
+    ram: 8,
+    internal: 64
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d28"),
+    brand: 'vivo',
+    features: [ 'fhd', 'gorilla', 'dolby vision' ],
+    model: 'v20',
+    ram: 4,
+    internal: 64,
+    price: 8700
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d29"),
+    brand: 'oppo',
+    model: '8s',
+    price: 15000,
+    features: [ 'gaming', 'pop up camera' ],
+    ram: 8,
+    internal: 128
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d2a"),
+    brand: 'poco',
+    model: 'c3',
+    price: 8000,
+    features: [ 'gaming', 'dolby atmos' ],
+    internal: 64,
+    ram: 6
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d2b"),
+    brand: 'iqoo',
+    model: 'z3',
+    price: 19800,
+    features: [ '5g', 'gaming' ],
+    internal: 128,
+    ram: 8
+  }
+]
+
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.updateOne({"internal":128,"brand":"iqoo"},{$set:{"price":15500}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.find()
+[
+  {
+    _id: ObjectId("6316d9923649220b83768d27"),
+    brand: 'realme',
+    features: [ 'dolby vision', 'dolby atmos' ],
+    model: '7s',
+    price: 12500,
+    ram: 8,
+    internal: 64
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d28"),
+    brand: 'vivo',
+    features: [ 'fhd', 'gorilla', 'dolby vision' ],
+    model: 'v20',
+    ram: 4,
+    internal: 64,
+    price: 8700
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d29"),
+    brand: 'oppo',
+    model: '8s',
+    price: 15000,
+    features: [ 'gaming', 'pop up camera' ],
+    ram: 8,
+    internal: 128
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d2a"),
+    brand: 'poco',
+    model: 'c3',
+    price: 8000,
+    features: [ 'gaming', 'dolby atmos' ],
+    internal: 64,
+    ram: 6
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d2b"),
+    brand: 'iqoo',
+    model: 'z3',
+    price: 15500,
+    features: [ '5g', 'gaming' ],
+    internal: 128,
+    ram: 8
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.find({"features":{$in:['dolby atmos']}})
+[
+  {
+    _id: ObjectId("6316d9923649220b83768d27"),
+    brand: 'realme',
+    features: [ 'dolby vision', 'dolby atmos' ],
+    model: '7s',
+    price: 12500,
+    ram: 8,
+    internal: 64
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d2a"),
+    brand: 'poco',
+    model: 'c3',
+    price: 8000,
+    features: [ 'gaming', 'dolby atmos' ],
+    internal: 64,
+    ram: 6
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.find({"features":{$in:['dolby vision']}})
+[
+  {
+    _id: ObjectId("6316d9923649220b83768d27"),
+    brand: 'realme',
+    features: [ 'dolby vision', 'dolby atmos' ],
+    model: '7s',
+    price: 12500,
+    ram: 8,
+    internal: 64
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d28"),
+    brand: 'vivo',
+    features: [ 'fhd', 'gorilla', 'dolby vision' ],
+    model: 'v20',
+    ram: 4,
+    internal: 64,
+    price: 8700
+  }
+]
+Atlas atlas-hp69qc-shard-0 [primary] forenoon> db.mobile.find({"features":{$elemMatch:{$in:['game','gaming']}}})
+[
+  {
+    _id: ObjectId("6316db933649220b83768d2b"),
+    brand: 'iqoo',
+    model: 'z3',
+    price: 15500,
+    features: [ '5g', 'gaming' ],
+    internal: 128,
+    ram: 8
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d2a"),
+    brand: 'poco',
+    model: 'c3',
+    price: 8000,
+    features: [ 'gaming', 'dolby atmos' ],
+    internal: 64,
+    ram: 6
+  },
+  {
+    _id: ObjectId("6316db933649220b83768d29"),
+    brand: 'oppo',
+    model: '8s',
+    price: 15000,
+    features: [ 'gaming', 'pop up camera' ],
+    ram: 8,
+    internal: 128
+  }
+]
